@@ -1,4 +1,4 @@
-== Installing Windows dependencies
+== 1. Installing Windows dependencies
 . `winget install Microsoft.VisualStudio.2022.Community --silent --override "--wait --quiet --add Microsoft.VisualStudio.Workload.NativeDesktop"`
 . https://developer.nvidia.com/cuda-downloads
 - If the CUDA installer fails on "Nsight Compute", re-run the CUDA installer, use "Custom (Advanced)" then uncheck "CUDA -> Nsight Compute". After CUDA successfully installs, install Nsight Compute using: https://developer.nvidia.com/tools-overview/nsight-compute/get-started
