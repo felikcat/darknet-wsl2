@@ -9,11 +9,10 @@
 . `wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb`
 . `sudo dpkg -i cuda-keyring_1.1-1_all.deb`
 . `sudo apt update; sudo apt-get -y install cudnn`
-. `mkdir -p ~/.config/environment.d/`
-. `printf "PATH=/usr/local/cuda-12.4/bin${PATH:+:${PATH}}\nLD_LIBRARY_PATH=/usr/local/cuda-12.4/lib64\
-                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" > ~/.config/environment.d/cuda.conf`
-. `/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator`
-
-Proceed with the Linux instructions for DarkNet, DarkHelp, then DarkMark.
+. Open in nano or vim or whatever editor you use: `vim ~/.bash_aliases`
+- `PATH=/usr/local/cuda-12.4/bin${PATH:+:${PATH}}
+    LD_LIBRARY_PATH=/usr/local/cuda-12.4/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}`
+. Open a new Ubuntu terminal, then proceed with the Linux instructions for DarkNet, DarkHelp, then DarkMark.
+- Make sure to check if `nvcc` is present by running it.
 
 TIP: For the make commands, do `make -j$(nproc)` instead of `make` to compile much faster.
