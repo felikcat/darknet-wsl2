@@ -10,7 +10,7 @@
 . `sudo dpkg -i cuda-keyring_1.1-1_all.deb`
 . `sudo apt update; sudo apt-get -y install cudnn`
 . `mkdir -p ~/.config/environment.d/`
-. `printf "export PATH=/usr/local/cuda-12.4/bin${PATH:+:${PATH}}\nexport LD_LIBRARY_PATH=/usr/local/cuda-12.4/lib64\
+. `printf "PATH=/usr/local/cuda-12.4/bin${PATH:+:${PATH}}\nLD_LIBRARY_PATH=/usr/local/cuda-12.4/lib64\
                          ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" > ~/.config/environment.d/cuda.conf`
 . `/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator`
 
