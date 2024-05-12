@@ -1,22 +1,18 @@
 == 1. Installing Windows dependencies
-. `winget install Microsoft.VisualStudio.2022.Community --silent --override "--wait --quiet --add Microsoft.VisualStudio.Workload.NativeDesktop"`
 . https://developer.nvidia.com/cuda-downloads
 - If the CUDA installer fails on "Nsight Compute", re-run the CUDA installer, use "Custom (Advanced)" then uncheck "CUDA -> Nsight Compute". After CUDA successfully installs, install Nsight Compute using: https://developer.nvidia.com/tools-overview/nsight-compute/get-started
 
-== 2. Upgrading from Ubuntu 22.04 LTS to 23.04
-NOTE: Why 23.04 and not 24.04? Due to it locking up Windows 11 PCs: https://github.com/microsoft/WSL/issues/11522
+== 2. Installing Ubuntu WSL2 dependencies
 
-. `sudo sed 's/lts/normal/g' /etc/update-manager/release-upgrades`
-. `sudo sed -i 's/jammy/lunar/g' /etc/apt/sources.list`
-. `sudo apt update; sudo apt upgrade; sudo apt dist-upgrade`
-
-== 3. Installing Ubuntu WSL2 dependencies
-
-. `sudo apt-get -y install build-essential git libopencv-dev cmake nvidia-cuda-toolkit`
+. `sudo apt-get -y install build-essential git libopencv-dev`
+. `sudo apt-get purge cmake; sudo snap install cmake --classic`
 . `wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb`
 . `sudo dpkg -i cuda-keyring_1.1-1_all.deb`
-. `sudo apt update`
-. `sudo apt-get -y install cudnn9-cuda-12`
+. `sudo apt update; sudo apt-get -y install cudnn`
+. `mkdir -p ~/.config/environment.d/`
+. `printf "export PATH=/usr/local/cuda-12.4/bin${PATH:+:${PATH}}\nexport LD_LIBRARY_PATH=/usr/local/cuda-12.4/lib64\
+                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" > ~/.config/environment.d/cuda.conf`
+. `/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator`
 
 Proceed with the Linux instructions for DarkNet, DarkHelp, then DarkMark.
 
