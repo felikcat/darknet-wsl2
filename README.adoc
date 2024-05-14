@@ -19,6 +19,6 @@ NOTE: Only do this if you're okay with wiping all the data/files inside of the U
 . Open in nano or vim or whatever editor you use: `vim ~/.bash_aliases`
 - `PATH=/usr/local/cuda-12.4/bin${PATH:+:${PATH}}
     LD_LIBRARY_PATH=/usr/local/cuda-12.4/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}`
-. `source ~/.bash_aliases` or open a new Ubuntu terminal, run `nvcc`, then if it's present, proceed with the Linux instructions for DarkNet, DarkHelp, then DarkMark.
+. `source ~/.bash_aliases` or open a new Ubuntu terminal, run `nvcc`, then if it's present, proceed with the Linux instructions for https://github.com/hank-ai/darknet[DarkNet], https://github.com/stephanecharette/DarkHelp[DarkHelp], then https://github.com/stephanecharette/DarkMark[DarkMark].
 
 TIP: For the make commands, do `make -j$(nproc)` instead of `make` to compile much faster.
