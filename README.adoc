@@ -1,18 +1,24 @@
+== 0. Giving Ubuntu WSL2 a clean slate
+NOTE: Only do this if you're okay with wiping all the data/files inside of the Ubuntu WSL2 partition. +
+
+* In PowerShell: +
+- `wsl --unregister Ubuntu`
+- `wsl install Ubuntu`
+
 == 1. Installing Windows dependencies
 . https://developer.nvidia.com/cuda-downloads
 - If the CUDA installer fails on "Nsight Compute", re-run the CUDA installer, use "Custom (Advanced)" then uncheck "CUDA -> Nsight Compute". After CUDA successfully installs, install Nsight Compute using: https://developer.nvidia.com/tools-overview/nsight-compute/get-started
 
 == 2. Installing Ubuntu WSL2 dependencies
 
-. `sudo apt-get -y install build-essential git libopencv-dev`
+. `sudo apt update; sudo apt-get -y install build-essential git libopencv-dev`
 . `sudo apt-get purge cmake; sudo snap install cmake --classic`
-. `wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb`
+. `wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-keyring_1.1-1_all.deb`
 . `sudo dpkg -i cuda-keyring_1.1-1_all.deb`
-. `sudo apt update; sudo apt-get -y install cudnn`
+. `sudo apt update; sudo apt-get -y install cuda-toolkit cudnn`
 . Open in nano or vim or whatever editor you use: `vim ~/.bash_aliases`
 - `PATH=/usr/local/cuda-12.4/bin${PATH:+:${PATH}}
     LD_LIBRARY_PATH=/usr/local/cuda-12.4/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}`
-. Open a new Ubuntu terminal, then proceed with the Linux instructions for DarkNet, DarkHelp, then DarkMark.
-- Make sure to check if `nvcc` is present by running it.
+. `source ~/.bash_aliases` or open a new Ubuntu terminal, run `nvcc`, then if it's present, proceed with the Linux instructions for DarkNet, DarkHelp, then DarkMark.
 
 TIP: For the make commands, do `make -j$(nproc)` instead of `make` to compile much faster.
